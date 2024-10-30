@@ -22,7 +22,7 @@ async function readJson(error = true)
     if (!fs.existsSync(path))
     {
         if (error) console.error("Ja rozumiem, że nie skończyłaś gegry rozszerzonej, ale chyba wiesz jakie pliki masz?");
-        return {};
+        return [];
     }
     return JSON.parse((await promises.readFile(path)).toString());
 }
@@ -37,7 +37,12 @@ async function main(){
 
             const name = await askQuestion("Uprzejmie proszę o wpisanie swojego pełnego imienia w polu tekstowym, abyśmy mogli właściwie zidentyfikować Twoją tożsamość w celu dodanie go do tegoż obiektu: ");
             const age = await askQuestion("Wprowadź wiek obiektu który aktualnie będzie dopisywany do twojego pliku JSON(który może nie istnieć): ");
-            const email = await askQuestion("Jeszcze proszę podać email tegoż obiektu, gdyż bez tego program sie wywali i się nie wyko");
+            const email = await askQuestion("Jeszcze proszę podać email tegoż obiektu, gdyż bez tego program sie wywali i się nie wykona, bo nie, bo tak uznaliśmy: ");
+
+            const array = readJson(false);
+            const newJson = { name, age, email };
+            array.append(newJson);
+
             // var json = JSON.stringify({name, age, email})
             // fs.writeFile(path, json, {}, () => {})
             

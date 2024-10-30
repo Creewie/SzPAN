@@ -45,9 +45,9 @@ async function calc(){
 
         if (metoda == "callback") {
             oblicz(liczba1, liczba2, znak)
-                .then((v) => console.log(v));
+                .then((v) => console.log(`${liczba1} ${znak} ${liczba2} = ${v}`));
         } else if (metoda == "promise") {
-            console.log(await oblicz(liczba1, liczba2, znak));
+            console.log(`${liczba1} ${znak} ${liczba2} = ` + await oblicz(liczba1, liczba2, znak));
         } else {
             console.log("Taki sposób obliczania nie istnieje kolego złociutki.")
         }
@@ -61,10 +61,9 @@ async function calc(){
 async function oblicz(liczba1, liczba2, znak)
 {
     await sleep(2000);
-    console.log(`${liczba1} ${znak} ${liczba2} =`);
     return eval(`${liczba1}${znak}${liczba2}`);
 }
-eval(`${liczba1}${znak}${liczba2}`)
+
 const sleep = async(ms) => new Promise((resolve) => {
     setTimeout(resolve, ms)
 });
