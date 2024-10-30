@@ -1,5 +1,5 @@
 import fs from 'fs'
-import promises from 'fs'
+import promises from "fs/promises"
 import readline from 'readline'
 
 const rl = readline.createInterface({
@@ -23,6 +23,9 @@ async function data(){
 
         var json = JSON.stringify({name, surname, age})
         fs.writeFile("DLData.json", json, {}, () => {})
+
+        var read = await promises.readFile("DLData.json")
+        console.log(read.toString())
     }catch(err){
         console.error(err)
     }finally{
