@@ -17,9 +17,9 @@ function askQuestion(question) {
 
 async function calc(){
     try{
-        const liczba1 = await askQuestion("Podaj liczbe 1 ")
+        const liczba1 = await askQuestion("Podaj liczbe ")
         const znak = await askQuestion("Podaj znak operacji matematycznej ")
-        const liczba2 = await askQuestion("Podaj liczbe 2 ")
+        const liczba2 = await askQuestion("Podaj liczbe ")
         const metoda = await askQuestion("Podaj metode przeprowadzania obliczeń (callback/promise) ")
 
         if (isNaN(liczba1) || isNaN(liczba2))
@@ -36,13 +36,21 @@ async function calc(){
             case "*":
                 break;
             case "/":
-                break;
+                if (liczba2 == 0)
+                    throw new Error("Zerem to jestes ty");
+                break;  
             default:
                 throw new Error("Co ty za czary rzucasz?")
         }
 
-        console.log(await oblicz(liczba1, liczba2, znak));
-
+        if (metoda == "callback") {
+            oblicz(liczba1, liczba2, znak)
+                .then((v) => console.log(v));
+        } else if (metoda == "promise") {
+            console.log(await oblicz(liczba1, liczba2, znak));
+        } else {
+            console.log("Taki sposób obliczania nie istnieje kolego złociutki.")
+        }
     }catch(err){
         console.error(err)
     }finally{
@@ -53,9 +61,10 @@ async function calc(){
 async function oblicz(liczba1, liczba2, znak)
 {
     await sleep(2000);
+    console.log(`${liczba1} ${znak} ${liczba2} =`);
     return eval(`${liczba1}${znak}${liczba2}`);
 }
-
+eval(`${liczba1}${znak}${liczba2}`)
 const sleep = async(ms) => new Promise((resolve) => {
     setTimeout(resolve, ms)
 });
