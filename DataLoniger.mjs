@@ -22,6 +22,7 @@ async function data(){
         const age = await askQuestion("Ile masz latek? ")
 
         var json = JSON.stringify({name, surname, age})
+        fs.writeFile("DLData.json", json, {}, () => {})
     }catch(err){
         console.error(err)
     }finally{
