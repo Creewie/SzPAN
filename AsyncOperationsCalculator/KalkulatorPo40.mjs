@@ -20,6 +20,8 @@ async function calc(){
         const liczba1 = await askQuestion("Podaj liczbe 1 ")
         const liczba2 = await askQuestion("Podaj liczbe 2 ")
         const znak = await askQuestion("Podaj operacje matematyczną")
+        const metoda = await askQuestion("Podaj metode przeprowadzania obliczeń(callback/promise)")
+        
     }catch(err){
         console.error(err)
     }finally{
