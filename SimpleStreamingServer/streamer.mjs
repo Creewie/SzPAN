@@ -8,9 +8,9 @@ const server = http.createServer((req,res)=>{
 
     const url = new URL(req.url, `http://${req.headers.host}`);
     const filePath = url.searchParams.get('file');
-    const headers = { "Content-Type": "text/plain; charset=utf-8" };
+    const contentType = url.searchParams.get("contentType") || "text/plain; charset=utf-8";
+    const headers = { "Content-Type": contentType };
     const errorHead = { "Content-Type": "text/plain; charset=utf-8" };
-    // const queryParams = Object.fromEntries(myURL.searchParams.entries())
 
     if (!filePath) {
         res.writeHead(400, errorHead);
@@ -29,7 +29,6 @@ const server = http.createServer((req,res)=>{
     const reader = fs.createReadStream(filePath);
     res.writeHead(200, headers);
     reader.pipe(res);
-
 });
 
 server.listen(port, () => {
