@@ -17,19 +17,19 @@ function askQuestion(question) {
 
 async function data(){
     try{
-        const name = await askQuestion("Jak się zwie jegomość? ")
-        const surname = await askQuestion("Jak masz na nazwisko? ")
-        const age = await askQuestion("Ile masz latek? ")
+        const name = await askQuestion("Jak się zwie jegomość? ");
+        const surname = await askQuestion("Jak masz na nazwisko? ");
+        const age = await askQuestion("Ile masz latek? ");
 
-        var json = JSON.stringify({name, surname, age})
-        fs.writeFile("DLData.json", json, {}, () => {})
+        var json = JSON.stringify({name, surname, age});
+        await promises.writeFile("DLData.json", json);
 
-        var read = await promises.readFile("DLData.json")
-        console.log(read.toString())
+        var read = await promises.readFile("DLData.json");
+        console.log(read.toString());
     }catch(err){
-        console.error(err)
+        console.error(err);
     }finally{
-        rl.close()
+        rl.close();
     }
 }
 data()

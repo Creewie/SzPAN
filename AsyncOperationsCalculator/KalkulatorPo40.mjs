@@ -1,5 +1,3 @@
-import fs from 'fs'
-import promises from "fs/promises"
 import readline from 'readline'
 
 const rl = readline.createInterface({
