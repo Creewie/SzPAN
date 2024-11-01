@@ -22,7 +22,7 @@ class Analinator extends EventEmitter {
         const dir = await askQuestion("Jaki folder chcesz podlukać? ");
 
         if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) {
-            console.error("Siusiaczku, taki folder nie istnieje jak twój mózg.");
+            console.error("Taki folder nie istnieje");
             return;
         }
 
